@@ -6,7 +6,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <a href="<?php base_url(); ?>nuevo-cargo" class="btn btn-success">Nuevo Empleado</a>
+                <a href="<?php base_url(); ?>nuevo-cargo" class="btn btn-success">Nuevo Cargo</a>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead class="thead-dark">

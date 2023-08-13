@@ -25,7 +25,7 @@
                     </div>
 
                     <button type="submit" class="btn btn-success">Guardar</button>
-                    <button type="button" class="btn btn-danger">Cancelar</button>
+                    <a href="<?php echo base_url(); ?>cargos" class="btn btn-danger" id="cancelButton">Cancelar</a>
                 </form>
             </div>
         </div>
