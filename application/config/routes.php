@@ -51,5 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['empleados'] = 'CrudControllers/Empleados'; // Ruta personalizada para la lista de empleados
+$route['sucursales'] = 'CrudControllers/Sucursales'; // Ruta personalizada para la lista de empleados
+$route['cargos'] = 'CrudControllers/Cargos'; // Ruta personalizada para la lista de empleados
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

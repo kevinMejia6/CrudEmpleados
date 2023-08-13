@@ -1,15 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
+
+    <?php
+    include(APPPATH . 'views/Components/header.php'); // Ruta a la vista parcial
+    ?>
     <div class="container">
-        <h1>Lista de Empleados</h1>
-        
+       
+        <h1>Lista Empleados</h1>
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-light">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Teléfono</th>
+                            <th>Sucursal</th>
+                            <th>Cargo</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>KEVIN</td>
+                            <td>Mejia</td>
+                            <td>7809898</td>
+                            <td>San Salvador</td>
+                            <td>Programador Junior</td>
+                            <td>Activo</td>
+                            <td><a type="button" class="btn btn-warning">Eliminar</a> <a type="button"
+                                    class="btn btn-danger">Editar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+
+    <?php
+    include(APPPATH . 'views/Components/footer.php');
+    ?>
