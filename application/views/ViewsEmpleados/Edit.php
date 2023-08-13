@@ -111,11 +111,15 @@
                 $(this).unbind('submit').submit();
                 Swal.fire({
                     icon: 'success',
-                    title: 'Éxito!',
-                    text: 'Empleado actualizado correctamente!',
-                    timer: 3000, // 3 seconds
-                    timerProgressBar: true,
+                    title: 'Éxito',
+                    text: 'Todos los campos están llenos.',
+                }).then(function(result) {
+                    if (result.isConfirmed) {
+                        // Redirige a la página de empleados
+                        window.location.href = "<?php echo base_url(); ?>empleados";
+                    }
                 });
+
             }
         });
 

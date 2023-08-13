@@ -95,7 +95,7 @@
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito',
-                text: 'Todos los campos están llenos.',
+                text: 'Datos guardados con exito',
             });
 
             // Aquí puedes enviar el formulario utilizando AJAX o lo que sea necesario
