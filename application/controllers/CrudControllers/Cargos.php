@@ -48,6 +48,7 @@ class Cargos extends CI_Controller {
             }
         public function guardar()
         {
+            $id_cargo = $this->input->post("id_cargo");
             $cargo = $this->input->post("nombre");
             $descripcion = $this->input->post("descripcion");
 
@@ -55,13 +56,24 @@ class Cargos extends CI_Controller {
                 "nombre" => $cargo,
                 "descripcion" => $descripcion,
             ];
-
-            $this->Cargos_model->guardar($data); // Llamada al método guardar en el modelo
-
-            $this->session->set_flashdata("success", "Cargo guardado con éxito");
-
-            redirect(base_url() . "cargos");
+        if ($id_cargo) {
+            // Si hay un ID de empleado, actualiza los datos
+            $this->Cargos_model->actualizar($id_cargo, $data);
+            $this->session->set_flashdata(
+                "success",
+                "Empleado actualizado con éxito"
+            );
+        } else {
+            // Si no hay un ID de empleado, realiza una inserción
+            $this->Cargos_model->guardar($data);
+            $this->session->set_flashdata(
+                "success",
+                "Empleado guardado con éxito"
+            );
         }
+
+        redirect(base_url() . "cargos");
+    }
 
         
 
