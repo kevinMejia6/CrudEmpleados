@@ -20,6 +20,18 @@ class Empleado_model extends CI_Model
     {
         return $this->db->get("cargo")->result();
     }
+    public function get_sucursalesByEstado($estado)
+    {
+        $this->db->where("estado", $estado);
+        return $this->db->get("sucursal")->result();
+    }
+    public function get_estado_sucursal($sucursal_id)
+    {
+        $sucursal = $this->db
+            ->get_where("sucursal", ["id" => $sucursal_id])
+            ->row();
+        return $sucursal ? $sucursal->estado : "N/A";
+    }
 
     public function get_sucursales()
     {

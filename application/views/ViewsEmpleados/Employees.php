@@ -26,11 +26,20 @@
                                     <td><?php echo $empleado->nombre . " " . $empleado->apellido; ?></td>
                                     <td><?php echo $empleado->telefono; ?></td>
                                     <td>
-                                        <?php if ($empleado->id_sucursal === null): ?>
-                                        Sin asignar
-                                        <?php else: ?>
-                                        <?php echo $this->Empleado_model->get_nombre_sucursal($empleado->id_sucursal); ?>
-                                        <?php endif; ?>
+                                        <?php
+                                        if ($empleado->id_sucursal === null) {
+                                            echo "Sin asignar";
+                                        } else {
+                                            $nombre_sucursal = $this->Empleado_model->get_nombre_sucursal($empleado->id_sucursal);
+                                            $estado_sucursal = $this->Empleado_model->get_estado_sucursal($empleado->id_sucursal);
+                                            
+                                            if ($estado_sucursal === 'Inactiva') {
+                                                echo "Sucursal Inactiva";
+                                            } else {
+                                                echo $nombre_sucursal;
+                                            }
+                                        }
+                                        ?>
                                     </td>
                                     <td>
                                         <?php if ($empleado->id_cargo === null): ?>

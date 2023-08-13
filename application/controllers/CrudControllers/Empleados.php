@@ -9,21 +9,33 @@ class Empleados extends CI_Controller
         $this->load->model("Empleado_model");
     }
 
-    public function index()
+   public function index()
     {
-        $estadoFilter = $this->input->get("estado"); // Get the estado filter from query parameter
-        $data["empleados"] = $this->Empleado_model->get_empleados(
-            $estadoFilter
-        );
+        $estadoFilter = $this->input->get("estado");
+        $data["empleados"] = $this->Empleado_model->get_empleados($estadoFilter);
+        
+        // Modificar el nombre de la sucursal si está inactiva
+        foreach ($data["empleados"] as &$empleado) {
+            $estado_sucursal = $this->Empleado_model->get_estado_sucursal($empleado->id_sucursal);
+            if ($estado_sucursal === 'Inactiva') {
+                $empleado->nombre_sucursal = 'Sucursal Inactiva';
+            }
+        }
+
         $this->load->view("ViewsEmpleados/Employees", $data);
     }
 
-    public function agregar()
-    {
-        $data["cargo"] = $this->Empleado_model->get_cargos(); // Obtener lista de cargos
-        $data["sucursal"] = $this->Empleado_model->get_sucursales(); // Obtener lista de sucursales
-        $this->load->view("ViewsEmpleados/Add", $data);
-    }
+
+  public function agregar()
+{
+    $data["cargo"] = $this->Empleado_model->get_cargos(); // Obtener lista de cargos
+    
+    // Obtener solo las sucursales con estado 'activo'
+    $data["sucursal"] = $this->Empleado_model->get_sucursalesByEstado('activa');
+    
+    $this->load->view("ViewsEmpleados/Add", $data);
+}
+
 
     public function guardar()
     {
