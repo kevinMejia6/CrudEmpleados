@@ -95,11 +95,13 @@
             Swal.fire({
                 icon: 'success',
                 title: 'Éxito',
-                text: 'Datos guardados con exito',
+                text: 'Datos guardados con éxito',
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Redirige a la página de empleados
+                    window.location.href = "<?php echo base_url(); ?>empleados";
+                }
             });
-
-            // Aquí puedes enviar el formulario utilizando AJAX o lo que sea necesario
-
         });
     });
     </script>

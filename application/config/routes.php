@@ -57,4 +57,5 @@ $route['empleado/(:num)'] = 'CrudControllers/Empleados/edit/$1';
 $route['empleado/eliminar/(:num)'] = 'CrudControllers/Empleados/eliminar/$1';
 $route['sucursales'] = 'CrudControllers/Sucursales'; 
 $route['cargos'] = 'CrudControllers/Cargos'; 
+$route['cargo/eliminar/(:num)'] = 'CrudControllers/Cargos/eliminar/$1';
 $route['translate_uri_dashes'] = FALSE;
