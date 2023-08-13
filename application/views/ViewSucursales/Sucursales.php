@@ -12,17 +12,6 @@
     <div class="col-lg-10">
         <div class="card">
             <div class="card-body">
-
-                <form action="<?php echo base_url("sucursales"); ?>" method="get">
-                    <label for="estado">Filtrar por estado:</label>
-                    <select name="estado" id="estado">
-                        <option value="activa" <?php echo ($estadoFiltrado === 'activa') ? 'selected' : ''; ?>>Activa
-                        </option>
-                        <option value="inactiva" <?php echo ($estadoFiltrado === 'Inactiva') ? 'selected' : ''; ?>>
-                            Inactiva</option>
-                    </select>
-                    <button type="submit">Aplicar filtro</button>
-                </form>
                 <a href="<?php base_url(); ?>nuevo-sucursal" class="btn btn-success">Nueva Sucursal</a>
                 <div class="table-responsive">
                     <table class="table table-striped">
