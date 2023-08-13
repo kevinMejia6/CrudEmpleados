@@ -3,16 +3,18 @@ defined("BASEPATH") or exit("No direct script access allowed");
 
 class Sucursales_model extends CI_Model
 {
-    public function get_sucursales()
+   public function get_sucursales($estado)
     {
+        $this->db->where("LOWER(estado)", strtolower($estado)); // Convertir el estado a minúsculas antes de comparar
         return $this->db->get("sucursal")->result();
     }
     
-    public function guardar($data)
-    {
-        $this->db->query("ALTER TABLE cargo AUTO_INCREMENT 1");
-        $this->db->insert("cargo", $data);
-    }
+        public function guardar($data)
+        {
+            $data["estado"] = "activa"; // Agregar estado activo por defecto
+            $this->db->insert("sucursal", $data);
+        }
+
         public function eliminar($id)
     {
         $data = array('nombre' => 'inactiva/o eliminada'); // Cambia el nombre del campo según tu estructura
@@ -45,10 +47,11 @@ public function actualizar($id, $data)
 }
 
      
-    public function get_cargo_by_id($id)
+    public function get_sucursal_by_id($id)
 {
-    return $this->db->get_where("cargo", ["id" => $id])->row();
+    return $this->db->get_where("sucursal", ["id" => $id])->row();
 }
+
 
 }
 

@@ -33,6 +33,7 @@ class Cargos extends CI_Controller {
     }
 
      // para la funcionalidad de editar
+     
         public function edit($id)
         {
             $data["cargo"] = $this->Cargos_model->get_cargo_by_id($id);

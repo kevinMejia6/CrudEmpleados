@@ -69,7 +69,7 @@
                 <select class="form-control" id="estado" name="estado" required>
                     <option value="<?php echo $empleado->apellido; ?>"><?php echo $empleado->estado; ?></option>
                     <?php
-                    $estados = array('Activo', 'Inactivo'); 
+                    $estados = array('Activa', 'Inactiva'); 
                     foreach ($estados as $estado) : ?>
                     <option value="<?php echo $estado; ?>"
                         <?php echo ($empleado->estado === $estado) ? 'selected' : ''; ?>>

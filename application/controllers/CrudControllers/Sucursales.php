@@ -9,11 +9,20 @@ class Sucursales extends CI_Controller {
         $this->load->model("Sucursales_model"); // Load the Sucursal
     }
 
-    public function index()
+   public function index()
     {
-        $data["sucursales"] = $this->Sucursales_model->get_sucursales(); // Get cargos from Sucursal_model
-        $this->load->view("ViewSucursales/Sucursales", $data); // Pass the data to the view
+        $estadoFiltrado = $this->input->get("estado", TRUE); // Obtener el estado del filtro desde la URL
+
+        // Si no se proporciona un estado de filtro válido, establecerlo en "activa" por defecto
+        if (!in_array($estadoFiltrado, ['activa', 'Inactiva'])) {
+            $estadoFiltrado = 'activa';
+        }
+
+        $data["estadoFiltrado"] = $estadoFiltrado; // Pasar el estado del filtro a la vista
+        $data["sucursales"] = $this->Sucursales_model->get_sucursales($estadoFiltrado);
+        $this->load->view("ViewSucursales/Sucursales", $data);
     }
+
     
     public function eliminar($id)
         {
@@ -33,31 +42,31 @@ class Sucursales extends CI_Controller {
      // para la funcionalidad de editar
         public function edit($id)
         {
-            $data["cargo"] = $this->Cargos_model->get_cargo_by_id($id);
+            $data["sucursal"] = $this->Sucursales_model->get_sucursal_by_id($id);
 
-            $this->load->view("ViewCargos/Edit", $data);
+            $this->load->view("ViewSucursales/edit", $data);
         }
 
          public function agregar()
             {
-            
-                $this->load->view("ViewCargos/Add");
+                $this->load->view("ViewSucursales/add");
             }
         public function guardar()
         {
-            $cargo = $this->input->post("nombre");
-            $descripcion = $this->input->post("descripcion");
-
+            $sucursal = $this->input->post("nombre");
+            $direccion = $this->input->post("direccion");
+            $telefono = $this->input->post("telefono");
             $data = [
-                "nombre" => $cargo,
-                "descripcion" => $descripcion,
+                "nombre" => $sucursal,
+                "direccion" => $direccion,
+                "telefono" => $telefono,
             ];
 
-            $this->Cargos_model->guardar($data); // Llamada al método guardar en el modelo
+            $this->Sucursales_model->guardar($data);
 
-            $this->session->set_flashdata("success", "Cargo guardado con éxito");
+            $this->session->set_flashdata("success", "Sucursal guardada con éxito");
 
-            redirect(base_url() . "cargos");
+            redirect(base_url() . "sucursales");
         }
 
 }
