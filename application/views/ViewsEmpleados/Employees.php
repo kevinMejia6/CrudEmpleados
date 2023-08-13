@@ -35,8 +35,8 @@
                                 <td><?php echo $this->Empleado_model->get_nombre_sucursal($empleado->id_sucursal); ?></td>
                                 <td><?php echo $empleado->estado; ?></td>
                                 <td>
-                                    <a type="button" class="btn btn-warning">Eliminar</a>
-                                    <a type="button" class="btn btn-danger">Editar</a>
+                                    <a href="<?php base_url()?>empleado" class="btn btn-warning">Eliminar</a>
+                                    <a href="<?php base_url()?>empleado/<?php echo $empleado->id; ?>" class="btn btn-danger">Editar</a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

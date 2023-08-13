@@ -29,7 +29,11 @@ public function get_nombre_sucursal($sucursal_id) {
     return $sucursal ? $sucursal->nombre : 'N/A';
 }
 
-    
+    // PARA EDITAR
+   public function get_empleado($id) {
+    $this->db->where('id', $id);
+    return $this->db->get('empleado')->row();
+}
 
 }
 ?>

@@ -58,9 +58,20 @@
     <button type="button" class="btn btn-danger">Cancelar</button>
 </form>
     </div>
-</body>
-</html>
-<script>console.log(<?php echo $this->session->flashdata('success')?>);</script>
+ <?php
+    include(APPPATH . 'views/Components/footer.php');
+    ?>
+ <script>
+        
+     <?php if($this->session->flashdata("success")): ?>
+    Swal.fire({
+        icon: 'success',
+        title: 'Good...',
+        text: '<?php echo $this->session->flashdata("success"); ?>',
+    });
+    <?php endif; ?>
+
+    </script>
 
 
 

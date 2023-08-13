@@ -52,7 +52,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['empleados'] = 'CrudControllers/Empleados'; // Ruta personalizada para la lista de empleados
 $route['nuevo-empleado'] = 'CrudControllers/Empleados/agregar'; // Cambiado de 'CrudControllers/Add' a 'Empleados/agregar'
-$route['nuevo-empleado/guardar'] = 'CrudControllers/Empleados/guardar'; // Cambiado de 'CrudControllers/Add' a 'Empleados/agregar'
+$route['nuevo-empleado/guardar'] = 'CrudControllers/Empleados/guardar'; 
+$route['empleado/(:num)'] = 'CrudControllers/Empleados/edit/$1'; 
 $route['sucursales'] = 'CrudControllers/Sucursales'; 
 $route['cargos'] = 'CrudControllers/Cargos'; 
 $route['translate_uri_dashes'] = FALSE;
