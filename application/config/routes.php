@@ -68,6 +68,6 @@ $route['sucursal/eliminar/(:num)'] = 'CrudControllers/Sucursales/eliminar/$1';
 $route['sucursal/(:num)'] = 'CrudControllers/Sucursales/edit/$1';
 $route['nuevo-sucursal/guardar'] = 'CrudControllers/Sucursales/guardar'; 
 $route['nuevo-sucursal'] = 'CrudControllers/Sucursales/agregar';
-$route['sucursale/(:num)'] = 'CrudControllers/Sucursales/edit/$1';
+$route['sucursal/(:num)'] = 'CrudControllers/Sucursales/edit/$1';
 
 $route['translate_uri_dashes'] = FALSE;
