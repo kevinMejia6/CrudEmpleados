@@ -7,7 +7,12 @@ class Cargos_model extends CI_Model
     {
         return $this->db->get("cargo")->result();
     }
-
+    
+    public function guardar($data)
+    {
+        $this->db->query("ALTER TABLE cargo AUTO_INCREMENT 1");
+        $this->db->insert("cargo", $data);
+    }
     public function eliminar($id)
 {
     // Now you can delete the cargo

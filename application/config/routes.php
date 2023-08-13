@@ -56,11 +56,19 @@ $route['nuevo-empleado/guardar'] = 'CrudControllers/Empleados/guardar';
 $route['empleado/(:num)'] = 'CrudControllers/Empleados/edit/$1';
 $route['empleado/eliminar/(:num)'] = 'CrudControllers/Empleados/eliminar/$1';
 $route['sucursales'] = 'CrudControllers/Sucursales'; 
+
 $route['cargos'] = 'CrudControllers/Cargos'; 
 $route['cargo/eliminar/(:num)'] = 'CrudControllers/Cargos/eliminar/$1';
 $route['cargo/(:num)'] = 'CrudControllers/Cargos/edit/$1';
 $route['nuevo-cargo/guardar'] = 'CrudControllers/Cargos/guardar'; 
-
+$route['nuevo-cargo'] = 'CrudControllers/Cargos/agregar';
 $route['cargo/(:num)'] = 'CrudControllers/Cargos/edit/$1';
+
+$route['sucursales'] = 'CrudControllers/Sucursales'; 
+$route['sucursale/eliminar/(:num)'] = 'CrudControllers/Sucursales/eliminar/$1';
+$route['sucursale/(:num)'] = 'CrudControllers/Sucursales/edit/$1';
+$route['nuevo-sucursal/guardar'] = 'CrudControllers/Sucursales/guardar'; 
+$route['nuevo-sucursal'] = 'CrudControllers/Sucursales/agregar';
+$route['sucursale/(:num)'] = 'CrudControllers/Sucursales/edit/$1';
 
 $route['translate_uri_dashes'] = FALSE;
