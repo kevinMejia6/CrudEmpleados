@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <h1 class="mt-5 bg-dark text-light">Editar registro: <?php echo $empleado->nombre; ?></h1>
-        <form id="formularioNuevoEmpleado" method="POST" action="<?php echo base_url(); ?>nuevo-empleado/guardar">
+        <form id="formularioEditEmpleado" method="POST" action="<?php echo base_url(); ?>nuevo-empleado/guardar">
             <div class="form-group">
                 <input type="hidden" id="id_empleado" name="id_empleado" value="<?php echo $empleado->id; ?>">
 
@@ -89,7 +89,7 @@
     <?php include APPPATH . "views/Components/footer.php"; ?>
     <script>
     $(document).ready(function() {
-        $("#formularioEditarEmpleado").submit(function(event) {
+        $("#formularioEditEmpleado").submit(function(event) {
             let isValid = true;
 
             $("input, select").each(function() {

@@ -68,11 +68,38 @@
     </div>
     <?php include APPPATH . "views/Components/footer.php"; ?>
     <script>
-    <?php if ($this->session->flashdata("success")): ?>
-    Swal.fire({
-        icon: 'success',
-        title: 'Good...',
-        text: '<?php echo $this->session->flashdata("success"); ?>',
+    $(document).ready(function() {
+        $("#formularioNuevoEmpleado").submit(function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            // Validar campos requeridos
+            var camposLlenos = true;
+
+            $("input, select").each(function() {
+                if ($(this).prop("required") && $(this).val() === "") {
+                    camposLlenos = false;
+                    return false; // Detiene el bucle cuando encuentra el primer campo vacío
+                }
+            });
+
+            if (!camposLlenos) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Campos requeridos',
+                    text: 'Por favor, complete todos los campos requeridos.',
+                });
+                return; // Detiene el proceso si hay campos vacíos
+            }
+
+            // Si todos los campos están llenos, muestra el SweetAlert de éxito
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Todos los campos están llenos.',
+            });
+
+            // Aquí puedes enviar el formulario utilizando AJAX o lo que sea necesario
+
+        });
     });
-    <?php endif; ?>
     </script>
