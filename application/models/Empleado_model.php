@@ -30,10 +30,23 @@ public function get_nombre_sucursal($sucursal_id) {
 }
 
     // PARA EDITAR
-   public function get_empleado($id) {
-    $this->db->where('id', $id);
-    return $this->db->get('empleado')->row();
+    public function get_empleado($id) {
+        $this->db->select('empleado.*, sucursal.nombre AS nombre_sucursal, cargo.nombre AS nombre_cargo');
+        $this->db->where('empleado.id', $id);
+        $this->db->join('sucursal', 'empleado.id_sucursal = sucursal.id', 'left');
+        $this->db->join('cargo', 'empleado.id_cargo = cargo.id', 'left');
+        return $this->db->get('empleado')->row();
+    }
+    public function actualizar($id, $data) {
+        $this->db->where('id', $id);
+        $this->db->update('empleado', $data);
+    }
+    public function get_estados() {
+    $this->db->distinct();
+    $this->db->select('estado');
+    return $this->db->get('empleado')->result();
 }
+
 
 }
 ?>
