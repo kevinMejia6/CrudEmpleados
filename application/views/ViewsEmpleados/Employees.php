@@ -2,43 +2,52 @@
     <?php
     include(APPPATH . 'views/Components/header.php'); // Ruta a la vista parcial
     ?>
-    <div class="container">
-       
-        <h1>Lista Empleados</h1>
+    <h1 class="mt-4 mb-3">Listado de Empleados</h1>
+    <div class="row">
+        <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <table class="table table-light">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Teléfono</th>
-                            <th>Sucursal</th>
-                            <th>Cargo</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>KEVIN</td>
-                            <td>Mejia</td>
-                            <td>7809898</td>
-                            <td>San Salvador</td>
-                            <td>Programador Junior</td>
-                            <td>Activo</td>
-                            <td><a type="button" class="btn btn-warning">Eliminar</a> <a type="button"
-                                    class="btn btn-danger">Editar</a>
-                            </td>
-                        </tr>
-                    </tbody>
+            <button type="button" class="btn btn-success">Nuevo Empleado</button>
+            <div class="table-responsive"> <!-- Agregamos una clase para hacer la tabla responsive -->
+                <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Direccion</th>
+                    <th>Telefono</th>
+                    <th>Cargo</th>
+                    <th>Sucursal</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <?php foreach ($empleados as $empleado): ?>
+                            <tr>
+                                <td><?php echo $empleado->id; ?></td>
+                                <td><?php echo $empleado->nombre; ?></td>
+                                <td><?php echo $empleado->apellido; ?></td>
+                                <td><?php echo $empleado->direccion; ?></td>
+                                <td><?php echo $empleado->telefono; ?></td>
+                                <td><?php echo $empleado->id_cargo; ?></td>
+                                <td><?php echo $empleado->id_sucursal; ?></td>
+                                <td><?php echo $empleado->estado; ?></td>
+                                <td>
+                                    <a type="button" class="btn btn-warning">Eliminar</a>
+                                    <a type="button" class="btn btn-danger">Editar</a>
+                                </td>
+                            </tr>
+                            <?php endforeach; ?>
+                </tbody>
                 </table>
             </div>
+            </div>
+        </div>
         </div>
     </div>
-
+</div>
     <?php
     include(APPPATH . 'views/Components/footer.php');
     ?>
