@@ -7,7 +7,7 @@
 
     ?>
 
-<h1 class="mt-4 mb-3">Listado de Empleados</h1>
+<h1 class="mt-4 mb-3">Listado de Sucursales</h1>
 <div class="row">
     <div class="col-lg-10">
         <div class="card">
