@@ -69,11 +69,12 @@
                 <div class="card-body">
                     <label for="estado_filter">Filtrar por Estado:</label>
                     <select id="estado_filter" name="estado_filter" class="form-control">
-                        <option value="">Todos</option>
+                        <option value="">Todos</option> <!-- Opción para mostrar todos los registros -->
                         <option value="activo">Activo</option>
                         <option value="inactivo">Inactivo</option>
                     </select>
                     <button id="filter_button" class="btn btn-primary mt-2 btn-block">Filtrar</button>
+
                 </div>
             </div>
         </div>
@@ -86,10 +87,16 @@
 document.addEventListener("DOMContentLoaded", function() {
     const filterButton = document.getElementById("filter_button");
     const estadoFilter = document.getElementById("estado_filter");
-
     filterButton.addEventListener("click", function() {
         const selectedEstado = estadoFilter.value;
-        const url = "<?php echo base_url("empleados"); ?>?estado=" + selectedEstado;
+        let url;
+
+        if (selectedEstado === "") {
+            url = "<?php echo base_url("empleados"); ?>"; // Sin filtro de estado
+        } else {
+            url = "<?php echo base_url("empleados"); ?>?estado=" + selectedEstado;
+        }
+
         window.location.href = url;
     });
     const deleteButtons = document.querySelectorAll(".delete-button");

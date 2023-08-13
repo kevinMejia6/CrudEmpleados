@@ -12,8 +12,13 @@ class Empleados extends CI_Controller
    public function index()
     {
         $estadoFilter = $this->input->get("estado");
-        $data["empleados"] = $this->Empleado_model->get_empleados($estadoFilter);
-        
+
+        if ($estadoFilter === "activo" || $estadoFilter === "inactivo") {
+            $data["empleados"] = $this->Empleado_model->get_empleados($estadoFilter);
+        } else {
+            $data["empleados"] = $this->Empleado_model->get_empleados(); // Sin filtro
+        }
+
         // Modificar el nombre de la sucursal si está inactiva
         foreach ($data["empleados"] as &$empleado) {
             $estado_sucursal = $this->Empleado_model->get_estado_sucursal($empleado->id_sucursal);
@@ -24,6 +29,7 @@ class Empleados extends CI_Controller
 
         $this->load->view("ViewsEmpleados/Employees", $data);
     }
+
 
 
   public function agregar()
