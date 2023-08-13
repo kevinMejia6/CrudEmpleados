@@ -23,16 +23,22 @@
                             <tbody>
                                 <?php foreach ($empleados as $empleado): ?>
                                 <tr>
-                                    <td><?php echo $empleado->nombre .
-                                            " " .
-                                            $empleado->apellido; ?></td>
+                                    <td><?php echo $empleado->nombre . " " . $empleado->apellido; ?></td>
                                     <td><?php echo $empleado->telefono; ?></td>
-                                    <td><?php echo $this->Empleado_model->get_nombre_sucursal(
-                                            $empleado->id_sucursal
-                                        ); ?></td>
-                                    <td><?php echo $this->Empleado_model->get_nombre_cargo(
-                                            $empleado->id_cargo
-                                        ); ?></td>
+                                    <td>
+                                        <?php if ($empleado->id_sucursal === null): ?>
+                                        Sin asignar
+                                        <?php else: ?>
+                                        <?php echo $this->Empleado_model->get_nombre_sucursal($empleado->id_sucursal); ?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <?php if ($empleado->id_cargo === null): ?>
+                                        Sin asignar
+                                        <?php else: ?>
+                                        <?php echo $this->Empleado_model->get_nombre_cargo($empleado->id_cargo); ?>
+                                        <?php endif; ?>
+                                    </td>
                                     <td><?php echo $empleado->estado; ?></td>
                                     <td>
                                         <a href="<?php echo base_url("empleado/eliminar/" . $empleado->id); ?>"
@@ -74,9 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     filterButton.addEventListener("click", function() {
         const selectedEstado = estadoFilter.value;
-        const url = "<?php echo base_url(
-                "empleados"
-            ); ?>?estado=" + selectedEstado;
+        const url = "<?php echo base_url("empleados"); ?>?estado=" + selectedEstado;
         window.location.href = url;
     });
     const deleteButtons = document.querySelectorAll(".delete-button");

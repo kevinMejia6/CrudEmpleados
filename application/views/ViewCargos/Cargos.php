@@ -27,7 +27,7 @@
                                     <a href="<?php echo base_url("cargo/eliminar/" . $cargo->id); ?>"
                                         class="btn btn-warning delete-button">Eliminar</a>
 
-                                    <a href="<?php echo base_url('cargo/' . $cargo->id); ?>"
+                                    <a href="<?php base_url(); ?>cargo/<?php echo $cargo->id; ?>"
                                         class="btn btn-danger">Editar</a>
                                 </td>
                             </tr>

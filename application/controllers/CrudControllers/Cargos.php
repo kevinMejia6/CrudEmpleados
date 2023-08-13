@@ -32,6 +32,32 @@ class Cargos extends CI_Controller {
         }
     }
 
+     // para la funcionalidad de editar
+        public function edit($id)
+        {
+            $data["cargo"] = $this->Cargos_model->get_cargo_by_id($id);
+
+            $this->load->view("ViewCargos/Edit", $data);
+        }
+        public function guardar()
+        {
+            $id = $this->input->post("id_cargo");
+            $data = array(
+                "nombre" => $this->input->post("nombre"),
+                "descripcion" => $this->input->post("descripcion")
+            );
+
+            $this->Cargos_model->actualizar($id, $data); // Llamada al método actualizar en el modelo
+
+            redirect(base_url() . "cargos"); // Redireccionar después de guardar
+        }
+
+      
+
+
+        
+
+
     
     
 
