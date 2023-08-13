@@ -12,5 +12,24 @@ class Empleado_model  extends CI_Model {
         $this->db->query("ALTER TABLE empleado AUTO_INCREMENT 1");
         $this->db->insert("empleado",$data);
     }
+    public function get_cargos() {
+    return $this->db->get('cargo')->result();
+    }
+
+    public function get_sucursales() {
+    return $this->db->get('sucursal')->result();
+    }
+    public function get_nombre_cargo($cargo_id) {
+    $cargo = $this->db->get_where('cargo', array('id' => $cargo_id))->row();
+    return $cargo ? $cargo->nombre : 'N/A';
+}
+
+public function get_nombre_sucursal($sucursal_id) {
+    $sucursal = $this->db->get_where('sucursal', array('id' => $sucursal_id))->row();
+    return $sucursal ? $sucursal->nombre : 'N/A';
+}
+
+    
+
 }
 ?>

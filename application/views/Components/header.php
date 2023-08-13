@@ -11,7 +11,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5 mt-5">
             <a class="navbar-brand" href="#">Crud Empleados</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"

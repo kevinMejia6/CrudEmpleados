@@ -15,9 +15,13 @@ class Empleados extends CI_Controller {
         $this->load->view('ViewsEmpleados/Employees', $data);
     }
 
-     public function agregar() {
-        $this->load->view('ViewsEmpleados/Add');
+      public function agregar() {
+        $data['cargo'] = $this->Empleado_model->get_cargos(); // Obtener lista de cargos
+        $data['sucursal'] = $this->Empleado_model->get_sucursales(); // Obtener lista de sucursales
+        $this->load->view('ViewsEmpleados/Add', $data);
     }
+
+    
         public function guardar() {
             $nombre = $this->input->post('nombre');
             $apellido = $this->input->post('apellido');
@@ -37,7 +41,9 @@ class Empleados extends CI_Controller {
                 "id_sucursal" =>$id_sucursal,
                 "id_cargo" =>$id_cargo,
             );
-    $this->Empleado_model->guardar($data);
+            $this->Empleado_model->guardar($data);
+            $this->session->set_flashdata('success','Empleado guardado con exito');
+            redirect(base_url()."empleados");
 
     }
 }

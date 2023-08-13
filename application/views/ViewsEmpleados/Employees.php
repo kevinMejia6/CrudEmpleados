@@ -7,7 +7,7 @@
         <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-            <button type="button" class="btn btn-success">Nuevo Empleado</button>
+            <a  href="<?php base_url()?>nuevo-empleado" type="button" class="btn btn-success">Nuevo Empleado</a>
             <div class="table-responsive"> <!-- Agregamos una clase para hacer la tabla responsive -->
                 <table class="table table-striped">
                 <thead class="thead-dark">
@@ -31,8 +31,8 @@
                                 <td><?php echo $empleado->apellido; ?></td>
                                 <td><?php echo $empleado->direccion; ?></td>
                                 <td><?php echo $empleado->telefono; ?></td>
-                                <td><?php echo $empleado->id_cargo; ?></td>
-                                <td><?php echo $empleado->id_sucursal; ?></td>
+                                <td><?php echo $this->Empleado_model->get_nombre_cargo($empleado->id_cargo); ?></td>
+                                <td><?php echo $this->Empleado_model->get_nombre_sucursal($empleado->id_sucursal); ?></td>
                                 <td><?php echo $empleado->estado; ?></td>
                                 <td>
                                     <a type="button" class="btn btn-warning">Eliminar</a>
