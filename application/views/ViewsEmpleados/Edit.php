@@ -67,37 +67,58 @@
             <div class="form-group">
                 <label for="estado">Estado</label>
                 <select class="form-control" id="estado" name="estado" required>
-                    <option value="">Seleccionar estado</option>
-                    <?php foreach ($estados as $estado): ?>
-                    <option value="<?php echo $estado->estado; ?>" <?php echo $estado->estado ==
-                    $empleado->estado
-                        ? "selected"
-                        : ""; ?>>
-                        <?php echo $estado->estado; ?>
+                    <option value="<?php echo $empleado->apellido; ?>"><?php echo $empleado->estado; ?></option>
+                    <?php
+                    $estados = array('Activo', 'Inactivo'); 
+                    foreach ($estados as $estado) : ?>
+                    <option value="<?php echo $estado; ?>"
+                        <?php echo ($empleado->estado === $estado) ? 'selected' : ''; ?>>
+                        <?php echo $estado; ?>
                     </option>
                     <?php endforeach; ?>
                 </select>
             </div>
 
 
-            <button type="submit" class="btn btn-success">Guardar</button>
-            <button type="button" class="btn btn-danger">Cancelar</button>
+            <button type="submit" class="btn btn-success" id="guardarButton">Guardar</button>
+            <a href="<?php echo base_url(); ?>empleados" class="btn btn-danger" id="cancelButton">Cancelar</a>
         </form>
     </div>
 
 
     <?php include APPPATH . "views/Components/footer.php"; ?>
     <script>
-    < script src = "https://code.jquery.com/jquery-3.6.0.min.js" >
-    </script>
+    $(document).ready(function() {
+        $("#formularioEditarEmpleado").submit(function(event) {
+            let isValid = true;
+
+            $("input, select").each(function() {
+                if ($(this).prop("required") && $.trim($(this).val()) === "") {
+                    isValid = false;
+                    return false; // Exit the loop early
+                }
+            });
+
+            if (!isValid) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Por favor complete todos los campos!',
+                })
+                event.preventDefault(); // Prevent form submission
+            } else {
+                // Form is valid, submit the form
+                $(this).unbind('submit').submit();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito!',
+                    text: 'Empleado actualizado correctamente!',
+                    timer: 3000, // 3 seconds
+                    timerProgressBar: true,
+                });
+            }
+        });
 
 
-    <?php if ($this->session->flashdata("success")): ?>
-    Swal.fire({
-    icon: 'success',
-    title: 'Good...',
-    text: '<?php echo $this->session->flashdata("success"); ?>',
     });
-    <?php endif; ?>
-
     </script>

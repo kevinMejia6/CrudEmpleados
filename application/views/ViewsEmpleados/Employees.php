@@ -2,17 +2,6 @@
     <?php include APPPATH . "views/Components/header.php"; ?>
 
     <h1 class="mt-4 mb-3">Listado de Empleados</h1>
-
-    <?php
-$message = $this->input->get("message");
-
-if ($message && strpos($_SERVER["REQUEST_URI"], "eliminar") !== false) {
-    echo '<div class="alert alert-success">' .
-        htmlspecialchars($message) .
-        "</div>";
-}
-?>
-
     <div class="row">
         <div class="col-lg-10">
             <div class="card">
@@ -46,10 +35,8 @@ if ($message && strpos($_SERVER["REQUEST_URI"], "eliminar") !== false) {
                                         ); ?></td>
                                     <td><?php echo $empleado->estado; ?></td>
                                     <td>
-                                        <a href="<?php echo base_url(
-                                                "empleado/eliminar/" .
-                                                    $empleado->id
-                                            ); ?>" class="btn btn-warning">Eliminar</a>
+                                        <a href="<?php echo base_url("empleado/eliminar/" . $empleado->id); ?>"
+                                            class="btn btn-warning delete-button">Eliminar</a>
                                         <a href="<?php base_url(); ?>empleado/<?php echo $empleado->id; ?>"
                                             class="btn btn-danger">Editar</a>
                                     </td>
@@ -92,6 +79,37 @@ document.addEventListener("DOMContentLoaded", function() {
             ); ?>?estado=" + selectedEstado;
         window.location.href = url;
     });
+    const deleteButtons = document.querySelectorAll(".delete-button");
+    deleteButtons.forEach(function(button) {
+        button.addEventListener("click", function(event) {
+            event.preventDefault();
+            const deleteUrl = this.getAttribute("href");
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: "Esta acción no se puede deshacer",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sí, eliminar",
+                cancelButtonText: "Cancelar",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setTimeout(function() {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Eliminado con exito!',
+                            text: 'Empleado guardado correctamente!',
+                        });
+                        window.location.href = deleteUrl;
+                    }, 500);
+
+                }
+            });
+        });
+    });
+
 
 });
 </script>
